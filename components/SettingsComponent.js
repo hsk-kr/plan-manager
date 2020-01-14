@@ -79,9 +79,10 @@ function SettingsComponent(props) {
     <>
       <View style={styles.container}>
         <ListItem
-          leftIcon={{ name: 'language', type: 'font-awesome' }}
+          titleStyle={{ color: theme(themeName).main }}
+          leftIcon={{ name: 'language', type: 'font-awesome', color: theme(themeName).main }}
           title={t('SETTINGS_LANGUAGE')}
-          rightIcon={{ name: 'chevron-right', type: 'font-awesome' }}
+          rightIcon={{ name: 'chevron-right', type: 'font-awesome', color: theme(themeName).main }}
           onPress={() => languagePickerRef.current.openPicker()}
           bottomDivider
         />
@@ -92,9 +93,10 @@ function SettingsComponent(props) {
           selectedValue={props.settings.language}
         />
         <ListItem
-          leftIcon={{ name: 'palette', type: 'font-awesome5' }}
+          titleStyle={{ color: theme(themeName).main }}
+          leftIcon={{ name: 'palette', type: 'font-awesome5', color: theme(themeName).main }}
           title={t('SETTINGS_THEME')}
-          rightIcon={{ name: 'chevron-right', type: 'font-awesome' }}
+          rightIcon={{ name: 'chevron-right', type: 'font-awesome', color: theme(themeName).main }}
           onPress={() => themePickerRef.current.openPicker()}
           bottomDivider
         />
@@ -105,15 +107,17 @@ function SettingsComponent(props) {
           selectedValue={props.settings.theme}
         />
         <ListItem
-          leftIcon={{ name: 'database', type: 'font-awesome' }}
+          titleStyle={{ color: theme(themeName).main }}
+          leftIcon={{ name: 'database', type: 'font-awesome', color: theme(themeName).main }}
           title={t('SETTINGS_BACKUP_RESTORE')}
-          rightIcon={{ name: 'chevron-right', type: 'font-awesome' }}
+          rightIcon={{ name: 'chevron-right', type: 'font-awesome', color: theme(themeName).main }}
           bottomDivider
         />
         <ListItem
-          leftIcon={{ name: 'code', type: 'font-awesome' }}
+          titleStyle={{ color: theme(themeName).main }}
+          leftIcon={{ name: 'code', type: 'font-awesome', color: theme(themeName).main }}
           title={t('SETTINGS_ABOUT')}
-          rightIcon={{ name: 'chevron-right', type: 'font-awesome' }}
+          rightIcon={{ name: 'chevron-right', type: 'font-awesome', color: theme(themeName).main }}
           onPress={() => showDeveloperInfo()}
           bottomDivider
         />
@@ -130,24 +134,8 @@ function SettingsComponent(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: theme(themeName).background,
     flex: 1
-  },
-  smallTransparentModal: {
-    width: 300,
-    height: 100,
-    backgroundColor: '#ced6e0',
-    borderRadius: 30,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  smallPicker: {
-    width: 200,
-    height: 50,
-    color: 'white'
-  },
-  pickerTitle: {
-    color: 'white'
   },
 });
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   ScrollView,
@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableHighlight,
   Modal,
-  Animated
+  Alert
 } from 'react-native';
 import {
   Divider,
@@ -15,7 +15,6 @@ import {
   ButtonGroup,
   Input
 } from 'react-native-elements';
-import { plans } from '../data/plans';
 import { getProgressRate, getColorOfPlan } from '../utils/calculation-plan';
 import { RectButton } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
@@ -31,26 +30,17 @@ let themeName = undefined;
 /**
  * A Component for a list item of the plan list.
  */
-function PlanListItem({ list, type, handleClickListItem, t }) {
+function PlanListItem({ list, type, handleClickListItem, t, onCompletePlan, onEndPlan }) {
+  const currentProcessPlanList = list.filter((item) => item.type === type && !item.endingDate);
 
-  return list.map((item) => {
-    const refSwipeableButton = useRef(null);
-
-    if (item.type !== type) {
-      return null;
-    }
-
+  return currentProcessPlanList.map((item) => {
     const backgroundColor = {
       backgroundColor: getColorOfPlan(themeName, item.progress, item.goal)
     };
 
-    const closeSwipe = () => {
-      refSwipeableButton.current.close();
-    }
-
     const renderLeftActions = () => {
       return (
-        <RectButton onPress={closeSwipe} style={[styles.actionButton, styles.leftActionButton]}>
+        <RectButton onPress={() => onCompletePlan(item.id)} style={[styles.actionButton, styles.leftActionButton]}>
           <Icon
             type='font-awesome'
             name='check'
@@ -63,7 +53,7 @@ function PlanListItem({ list, type, handleClickListItem, t }) {
 
     const renderRightActions = () => {
       return (
-        <RectButton onPress={closeSwipe} style={[styles.actionButton, styles.rightActionButton]}>
+        <RectButton onPress={() => onEndPlan(item.id)} style={[styles.actionButton, styles.rightActionButton]}>
           <Icon
             type='font-awesome'
             name='trash'
@@ -77,7 +67,6 @@ function PlanListItem({ list, type, handleClickListItem, t }) {
     return (
       <Swipeable
         key={item.id}
-        ref={refSwipeableButton}
         friction={2}
         leftThreshold={30}
         rightThreshold={40}
@@ -85,13 +74,12 @@ function PlanListItem({ list, type, handleClickListItem, t }) {
         renderRightActions={renderRightActions}>
         <TouchableHighlight
           onPress={() => handleClickListItem(item.id)}
-          underlayColor={theme(themeName).underlayColor}
-        >
+          underlayColor={theme(themeName).underlayColor} >
           <View style={[styles.listItemContainer, backgroundColor]}>
             <View style={styles.listItemLeft}>
               <Text style={styles.listItemTitle}>{item.title}</Text>
               <View>
-                <Text style={styles.listItemProgressText}>진행률 {getProgressRate(item.progress, item.goal)}%</Text>
+                <Text style={styles.listItemProgressText}>{t('CURRENT_PROGRESS_TEXT')} {getProgressRate(item.progress, item.goal)}%</Text>
               </View>
             </View>
             <View style={styles.listItemRight}>
@@ -100,14 +88,13 @@ function PlanListItem({ list, type, handleClickListItem, t }) {
           </View>
         </TouchableHighlight>
       </Swipeable>
-    )
+    );
   });
 }
 
 function PlanListComponent(props) {
   // states
   const [isLoading, load] = useState(true);
-  const [planList, setPlanList] = useState(plans);
   const [planTypeIndex, setPlanTypeIndex] = useState(0);
   const [planAchievementIndex, setPlanAchievementIndex] = useState(0);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -149,6 +136,102 @@ function PlanListComponent(props) {
     props.navigation.navigate('PlanDetail', { planId });
   };
 
+  const resetInputValues = () => {
+    setPlanTitle('');
+    setCountForPlan(0);
+    setTimeForPlan({ hours: 0, minutes: 0 });
+    setPlanAchievementIndex(0);
+    setPlanTypeIndex(0);
+  };
+
+  // Complete Plan
+  const handleCompletePlan = (id) => {
+    Alert.alert(
+      t('ALERT_TITLE'),
+      t('ALERT_COMPLETE_PLAN_QUESTION'),
+      [
+        {
+          text: t('CANCEL'),
+          style: 'cancel'
+        },
+        {
+          text: t('OK'),
+          onPress: () => {
+            props.completePlan(id);
+            Alert.alert(t('ALERT_TITLE'), t('ALERT_COMPLETE_PLAN_OK'));
+          }
+        }
+      ],
+      { cancelable: false }
+    );
+  };
+
+  // End Plan
+  const handleEndPlan = (id) => {
+    Alert.alert(
+      t('ALERT_TITLE'),
+      t('ALERT_END_PLAN_QUESTION'),
+      [
+        {
+          text: t('CANCEL'),
+          style: 'cancel'
+        },
+        {
+          text: t('OK'),
+          onPress: () => {
+            props.completePlan(id);
+            Alert.alert(t('ALERT_TITLE'), t('ALERT_END_PLAN_OK'));
+          }
+        }
+      ],
+      { cancelable: false }
+    );
+    props.endPlan(id);
+  }
+
+  // Add Plan
+  const handleClickAddPlan = () => {
+    // planTypeIndex ( 0: daily, 1: weekly, 2 or others: monthly )
+    const type = planTypeIndex === 0 ? 'daily' : (planTypeIndex === 1 ? 'weekly' : 'monthly');
+    // planAchievementIndex ( 0: 'count', 1: 'time', 2 or others: 'once' )
+    const unit = planAchievementIndex === 0 ? 'count' : (planAchievementIndex === 1 ? 'time' : 'once');
+    // planAchievementType ( count: countForPlan, time: convert the time to seconds, once: 1 )
+    const goal = unit === 'count'
+      ? countForPlan
+      : unit === 'time'
+        ? (timeForPlan.hours * 3600 + timeForPlan.minutes * 60)
+        : 1;
+
+    const vaildatePlanInputValues = () => {
+      if (planTitle.trim().length <= 0) {
+        Alert.alert(t('ALERT_TITLE'), t('ALERT_INVAILD_TITLE'));
+        return false;
+      } else if (
+        (type === 'count' && isNaN(countForPlan))
+        || (type === 'time' && (isNaN(timeForPlan.hours) || isNaN(timeForPlan.minutes)))
+        || goal <= 0
+      ) {
+        Alert.alert(t('ALERT_TITLE'), t('ALERT_INVAILD_GOAL'));
+        return false;
+      }
+
+      return true;
+    }
+
+    if (vaildatePlanInputValues()) {
+      props.addPlan({
+        title: planTitle.trim(),
+        goal,
+        type,
+        unit
+      });
+
+      resetInputValues();
+      Alert.alert(t('ALERT_TITLE'), t('ALERT_SUCCESS_TO_ADD_PLAN'));
+      toggleModal();
+    }
+  };
+
   const content = (
     <>
       <ScrollView>
@@ -156,17 +239,35 @@ function PlanListComponent(props) {
           <View style={styles.container} >
             <View>
               <Text style={styles.groupHeader}>{t('DAILY_PLAN')}</Text>
-              <PlanListItem list={planList} type='daily' handleClickListItem={navigateToDetail} t={t} />
+              <PlanListItem
+                list={props.plans.plans}
+                type='daily'
+                handleClickListItem={navigateToDetail}
+                t={t}
+                onCompletePlan={handleCompletePlan}
+                onEndPlan={handleEndPlan} />
             </View>
             <Divider style={styles.divider} />
             <View>
               <Text style={styles.groupHeader}>{t('WEEKLY_PLAN')}</Text>
-              <PlanListItem list={planList} type='weekly' handleClickListItem={navigateToDetail} t={t} />
+              <PlanListItem
+                list={props.plans.plans}
+                type='weekly'
+                handleClickListItem={navigateToDetail}
+                t={t}
+                onCompletePlan={handleCompletePlan}
+                onEndPlan={handleEndPlan} />
             </View>
             <Divider style={styles.divider} />
             <View>
               <Text style={styles.groupHeader}>{t('MONTHLY_PLAN')}</Text>
-              <PlanListItem list={planList} type='monthly' handleClickListItem={navigateToDetail} t={t} />
+              <PlanListItem
+                list={props.plans.plans}
+                type='monthly'
+                handleClickListItem={navigateToDetail}
+                t={t}
+                onCompletePlan={handleCompletePlan}
+                onEndPlan={handleEndPlan} />
             </View>
           </View>
         </Animatable.View>
@@ -232,32 +333,32 @@ function PlanListComponent(props) {
           <View>
             {
               planAchievementIndex === 0
-                ? /* planAchievementIndex === 0 */(
+                ? /* planAchievementIndex === 0 (COUNT) */(
                   <Input
                     textAlign='center'
-                    value={countForPlan}
+                    value={countForPlan.toString()}
                     onChangeText={(text) => setCountForPlan(text)}
                     placeholder={t('PLAN_ACHIEVEMENT_TYPES_COUNT')}
                   />
                 )
                 : planAchievementIndex === 1
-                  ? /* planAchievementIndex === 1 */(
+                  ? /* planAchievementIndex === 1 (TIME) */(
                     <>
                       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                         <InputNumber
                           notAllowNegative
                           onChangeText={(v) => setTimeForPlan({ ...timeForPlan, hours: v })}
-                          value={timeForPlan.hours} />
+                          value={timeForPlan.hours.toString()} />
                         <Text style={styles.timeLabel}>{t('HOURS_TEXT')}</Text>
                         <InputNumber
                           notAllowNegative
                           onChangeText={(v) => setTimeForPlan({ ...timeForPlan, minutes: v })}
-                          value={timeForPlan.minutes} />
+                          value={timeForPlan.minutes.toString()} />
                         <Text>{t('MINUTES_TEXT')}</Text>
                       </View>
                     </>
                   )
-                  : /* planAchievementIndex === 2 or others */(
+                  : /* planAchievementIndex === 2 (ONCE) or others */(
                     null
                   )
             }
@@ -269,6 +370,7 @@ function PlanListComponent(props) {
               title={t('ADD_PLAN_BUTTON')}
               buttonStyle={styles.addPlanButton}
               textStyle={styles.addPlanButtonText}
+              onPress={handleClickAddPlan}
             />
             <Button
               title={t('CANCEL')}

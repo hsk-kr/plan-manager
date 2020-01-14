@@ -13,7 +13,6 @@ import locale from '../localization/locale';
 import theme from '../theme';
 import Loading from './LoadingComponent';
 import InputNumber from './InputNumberComponent';
-import { plans } from '../data/plans';
 import { getProgressRate } from '../utils/calculation-plan';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
@@ -21,7 +20,6 @@ let themeName = undefined;
 
 function PlanDetailComponent(props) {
   const [isLoading, load] = useState(true);
-  const [planList, setPlanList] = useState(plans);
   const [plan, setPlan] = useState(null);
   const [progressCount, setProgressCount] = useState(0);
   const [progressTime, setProgressTime] = useState({ hours: 0, minutes: 0 });
@@ -46,7 +44,7 @@ function PlanDetailComponent(props) {
     const planId = props.navigation.getParam('planId', null);
 
     if (planId !== null) {
-      setPlan(planList.filter((p) => p.id === planId)[0]);
+      setPlan(props.plans.plans.filter((p) => p.id === planId)[0]);
     }
   }, []);
 
@@ -134,13 +132,13 @@ function PlanDetailComponent(props) {
                       value={progressTime.hours}
                       onChangeText={(v) => setProgressTime({ ...progressTime, hours: v })}
                     />
-                    <Text>{t('HOURS_TEXT')}</Text>
+                    <Text> {t('HOURS_TEXT')} </Text>
                     <InputNumber
                       notAllowNegative
                       value={progressTime.minutes}
                       onChangeText={(v) => setProgressTime({ ...progressTime, minutes: v })}
                     />
-                    <Text>{t('MINUTES_TEXT')}</Text>
+                    <Text> {t('MINUTES_TEXT')} </Text>
                   </>
                 )
                 : null

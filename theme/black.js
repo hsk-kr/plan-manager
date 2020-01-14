@@ -1,7 +1,7 @@
 // TODO: This is a style for testing
 const blackTheme = {
   main: '#3868d6',
-  background: '#f8ffff',
+  background: '#f8f88f',
   inactive: '#a4b8be',
   activeBackground: '##d8d8e0',
   tabBackground: '#ffff8f',

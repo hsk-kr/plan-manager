@@ -1,11 +1,10 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import PlanManager from '../containers/PlanManagerContainer';
-import theme from '../theme';
+import PlanHistory from '../containers/PlanHistoryContainer';
 
-const PlanManagementNavigator = createStackNavigator(
+const PlanHistoryNavigator = createStackNavigator(
   {
-    PlanManager: {
-      screen: PlanManager,
+    PlanHistory: {
+      screen: PlanHistory,
       navigationOptions: ({ navigation }) => ({
         title: navigation.getParam('title') || '',
         headerStyle: {
@@ -24,4 +23,4 @@ const PlanManagementNavigator = createStackNavigator(
   }
 );
 
-export default PlanManagementNavigator;
+export default PlanHistoryNavigator;

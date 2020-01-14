@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware } from 'redux';
 import { AsyncStorage } from 'react-native';
 import { persistStore, persistCombineReducers } from 'redux-persist';
-import settings from './settings';
 import thunk from 'redux-thunk';
+import settings from './settings';
+import plans from './plans';
 
 /**
  * Create persistor and store then returns
@@ -16,7 +17,8 @@ const configureStore = () => {
 
   const store = createStore(
     persistCombineReducers(config, {
-      settings
+      settings,
+      plans
     }),
     applyMiddleware(thunk)
   );

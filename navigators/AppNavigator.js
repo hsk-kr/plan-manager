@@ -3,7 +3,7 @@ import { Icon } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import PlanListNavigator from './PlanListNavigator';
-import PlanManagementNavigator from './PlanManagementNavigator';
+import PlanHistoryNavigator from './PlanHistoryNavigator';
 import SettingsNavigator from './SettingsNavigator';
 import theme from '../theme';
 
@@ -17,8 +17,8 @@ const AppContainer = createBottomTabNavigator(
         )
       })
     },
-    PlanMananger: {
-      screen: PlanManagementNavigator,
+    PlanHistory: {
+      screen: PlanHistoryNavigator,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
           <Icon name='bar-chart' type='font-awesome' color={tintColor} size={24} />

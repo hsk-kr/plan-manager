@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-function PlanManagerComponent() {
+function PlanHistoryComponent() {
   return (
     <View>
-      <Text>PlanManager</Text>
+      <Text>PlanHistory</Text>
     </View>
   );
 }
 
-export default PlanManagerComponent;
+export default PlanHistoryComponent;

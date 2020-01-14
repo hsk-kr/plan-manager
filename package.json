@@ -10,6 +10,7 @@
   "dependencies": {
     "@react-native-community/masked-view": "0.1.5",
     "@react-navigation/bottom-tabs": "next",
+    "buffer": "^5.4.3",
     "expo": "~36.0.0",
     "expo-constants": "~8.0.0",
     "react": "~16.9.0",
@@ -22,6 +23,7 @@
     "react-native-reanimated": "~1.4.0",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
+    "react-native-uuid": "^1.4.9",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^2.0.13",

@@ -47,6 +47,14 @@ const english = {
   BLUE_THEME: 'Blue',
   DEVELOPER_INFO_TITLE: 'About Me',
   DEVELOPER_INFO_BODY: 'I wanted an app that can help me for achieving my goals. so I made an idea up then made this. I hope that the app could help you.',
+  ALERT_TITLE: 'Alert Window',
+  ALERT_INVAILD_TITLE: 'Please, check the title again.',
+  ALERT_INVAILD_GOAL: 'Please, check the goal again.',
+  ALERT_SUCCESS_TO_ADD_PLAN: 'It\'s succeed to add it into planlist.',
+  ALERT_COMPLETE_PLAN_QUESTION: 'If you click OK button, the progress been completed automatically.',
+  ALERT_COMPLETE_PLAN_OK: 'It has been completed.',
+  ALERT_END_PLAN_QUESTION: 'If you click OK button, this plan will be closed. after closing, you can\'t restore it.',
+  ALERT_END_PLAN_OK: 'This plan has been closed.',
 };
 
 export default english;
