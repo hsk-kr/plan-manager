@@ -1,5 +1,5 @@
-node_modules/**/*
-.expo/*
+# node_modules/**/*
+.expo/**/*
 npm-debug.*
 *.jks
 *.p8
@@ -12,3 +12,7 @@ web-report/
 
 # macOS
 .DS_Store
+
+# Customized modules
+node_modules/*
+!node_modules/react-native-picker-box/
