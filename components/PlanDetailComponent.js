@@ -3,7 +3,8 @@ import {
   ScrollView,
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from 'react-native';
 import {
   Button,
@@ -14,6 +15,7 @@ import theme from '../theme';
 import Loading from './LoadingComponent';
 import InputNumber from './InputNumberComponent';
 import { getProgressRate } from '../utils/calculation-plan';
+import { toDefaultDateString } from '../utils/date';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
@@ -52,6 +54,47 @@ function PlanDetailComponent(props) {
     return <Loading />
   }
 
+  // handlers
+  const endPlanHandler = () => {
+    Alert.alert(
+      t('ALERT_TITLE'),
+      t('ALERT_END_PLAN_QUESTION'),
+      [
+        {
+          text: t('CANCEL'),
+          style: 'cancel'
+        },
+        {
+          text: t('OK'),
+          onPress: () => {
+            props.endPlan(plan.id);
+            props.navigation.goBack();
+          }
+        }
+      ],
+      { cancelable: false }
+    );
+  };
+
+  const addProgressPlanHandler = () => {
+    let progress = 0;
+
+    if (plan.unit === 'count') {
+      if (!isNaN(progressCount)) {
+        progress = Number(progressCount);
+      }
+    } else if (plan.unit === 'time') {
+      if (!isNaN(progressTime.hours) && !isNaN(progressTime.minutes)) {
+        progress = (Number(progressTime.hours) * 3600) + (Number(progressTime.minutes) * 60);
+      }
+    } else {
+      progress = plan.progress === 0 ? 1 : 0;
+    }
+
+    props.addProgressPlan({ id: plan.id, progress });
+    props.navigation.goBack();
+  };
+
   return (
     <ScrollView style={{ backgroundColor: '#fff' }}>
       <View style={styles.container}>
@@ -61,7 +104,7 @@ function PlanDetailComponent(props) {
         <Divider style={styles.marginTopBottom} />
         <View style={styles.horizontalView}>
           <Text style={styles.groupLabel}>{t('PLAN_START_DATE_TEXT')}: </Text>
-          <Text style={styles.groupLabel}>{plan.startingDate}</Text>
+          <Text style={styles.groupLabel}>{toDefaultDateString(plan.startingDate)}</Text>
         </View>
         <View style={styles.horizontalView}>
           <Text style={styles.groupLabel}>{t('PLAN_TYPES')}: </Text>
@@ -117,7 +160,7 @@ function PlanDetailComponent(props) {
                 <>
                   <InputNumber
                     notAllowNegative
-                    value={progressCount}
+                    value={progressCount.toString()}
                     onChangeText={setProgressCount}
                   />
                   <Text>{t('COUNT_SUFFIX')}</Text>
@@ -129,13 +172,13 @@ function PlanDetailComponent(props) {
                   <>
                     <InputNumber
                       notAllowNegative
-                      value={progressTime.hours}
+                      value={progressTime.hours.toString()}
                       onChangeText={(v) => setProgressTime({ ...progressTime, hours: v })}
                     />
                     <Text> {t('HOURS_TEXT')} </Text>
                     <InputNumber
                       notAllowNegative
-                      value={progressTime.minutes}
+                      value={progressTime.minutes.toString()}
                       onChangeText={(v) => setProgressTime({ ...progressTime, minutes: v })}
                     />
                     <Text> {t('MINUTES_TEXT')} </Text>
@@ -149,6 +192,7 @@ function PlanDetailComponent(props) {
           <Button
             title={t('APPLY_PROGRESS_TEXT')}
             buttonStyle={styles.applyProgressButton}
+            onPress={addProgressPlanHandler}
           />
           <Button
             title={t('VIEW_PLAN_HISTORY_TEXT')}
@@ -157,6 +201,7 @@ function PlanDetailComponent(props) {
           <Button
             title={t('END_PLAN_TEXT')}
             buttonStyle={styles.endPlanButton}
+            onPress={endPlanHandler}
           />
         </View>
       </View>

@@ -54,7 +54,7 @@ export const resetPlans = () => ({
  * Progress Plan
  * @param {object} param { id, progress }
  */
-export const progressPlan = ({ id, progress }) => ({
+export const addProgressPlan = ({ id, progress }) => ({
   type: ADD_PROGRESS_PLAN,
   payload: { id, progress }
 });

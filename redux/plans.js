@@ -70,7 +70,8 @@ const plans = (
       }
     case ADD_PROGRESS_PLAN:
       {
-        const { id, progress } = action.payload;
+        const id = action.payload.id;
+        const progress = Number(action.payload.progress);
         const targetPlan = state.plans.filter((plan) => plan.id === id)[0];
 
         if (targetPlan) {

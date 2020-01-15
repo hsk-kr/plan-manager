@@ -127,7 +127,7 @@ function PlanListComponent(props) {
     });
   }, [props.settings.language]);
 
-  // custom functions
+  // functions
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -144,7 +144,7 @@ function PlanListComponent(props) {
     setPlanTypeIndex(0);
   };
 
-  // Complete Plan
+  // Complete plan button handler
   const handleCompletePlan = (id) => {
     Alert.alert(
       t('ALERT_TITLE'),
@@ -166,7 +166,7 @@ function PlanListComponent(props) {
     );
   };
 
-  // End Plan
+  // End plan button handler
   const handleEndPlan = (id) => {
     Alert.alert(
       t('ALERT_TITLE'),
@@ -179,14 +179,13 @@ function PlanListComponent(props) {
         {
           text: t('OK'),
           onPress: () => {
-            props.completePlan(id);
+            props.endPlan(id);
             Alert.alert(t('ALERT_TITLE'), t('ALERT_END_PLAN_OK'));
           }
         }
       ],
       { cancelable: false }
     );
-    props.endPlan(id);
   }
 
   // Add Plan
