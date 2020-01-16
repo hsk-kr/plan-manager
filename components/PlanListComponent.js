@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   ScrollView,
@@ -33,7 +33,7 @@ let themeName = undefined;
 function PlanListItem({ list, type, handleClickListItem, t, onCompletePlan, onEndPlan }) {
   const currentProcessPlanList = list.filter((item) => item.type === type && !item.endingDate);
 
-  return currentProcessPlanList.map((item) => {
+  return currentProcessPlanList.map((item, i) => {
     const backgroundColor = {
       backgroundColor: getColorOfPlan(themeName, item.progress, item.goal)
     };
@@ -101,6 +101,7 @@ function PlanListComponent(props) {
   const [planTitle, setPlanTitle] = useState('');
   const [countForPlan, setCountForPlan] = useState('');
   const [timeForPlan, setTimeForPlan] = useState({ hours: 0, minutes: 0 });
+  const [today, setToday] = useState(new Date(Date.now()));
 
   // translate function for language
   const t = locale(props.settings.language);
@@ -108,6 +109,22 @@ function PlanListComponent(props) {
   // when component's mounted, change isLoading is true
   useEffect(() => {
     load(false);
+    props.plansUpToDate();
+
+
+    // If day is over, up to date plans
+    const checkingTimeInterval = setInterval(() => {
+      const nowDate = new Date(Date.now());
+
+      if (nowDate.getDate() !== today.getDate()) {
+        props.plansUpToDate();
+        setToday(nowDate);
+      }
+    }, 60000);
+
+    return () => {
+      clearInterval(checkingTimeInterval);
+    };
   }, []);
 
   // change themeName when theme's changed

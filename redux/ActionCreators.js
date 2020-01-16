@@ -7,6 +7,7 @@ import {
   END_PLAN,
   COMPLETE_PLAN,
   RESET_PLANS,
+  PLANS_UP_TO_DATE,
 } from './ActionTypes';
 
 // settings
@@ -48,6 +49,10 @@ export const completePlan = (id) => ({
 
 export const resetPlans = () => ({
   type: RESET_PLANS
+});
+
+export const plansUpToDate = () => ({
+  type: PLANS_UP_TO_DATE
 });
 
 /**

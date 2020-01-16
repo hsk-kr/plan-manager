@@ -30,3 +30,31 @@ export const getColorOfPlan = (themeName, progress, goal) => {
     return theme(themeName).overDoneBackground;
   }
 };
+
+/**
+ * Returns Is the date ended or not. It depends on the type.
+ * @param {string} type 'daily' | 'weekly' | 'monthly'
+ * @param {Date} date 
+ */
+export const isOverDate = (type, date) => {
+  const today = new Date(Date.now());
+  today.setHours(0, 0, 0);
+
+  switch (type) {
+    case 'daily':
+      return date.getTime() < today.getTime();
+    case 'weekly':
+      {
+        const subtractValues = [6, 0, 1, 2, 3, 4, 5];
+        today.setDate(today.getDate() - subtractValues);
+        return date.getTime() < today.getTime();
+      }
+    case 'monthly':
+      {
+        today.setDate(1);
+        return date.getTime() < today.getTime();
+      }
+    default:
+      return false;
+  }
+};

@@ -5,8 +5,10 @@ import {
   END_PLAN,
   COMPLETE_PLAN,
   RESET_PLANS,
+  PLANS_UP_TO_DATE,
 } from './ActionTypes';
 import uuid from 'react-native-uuid';
+import { isOverDate } from '../utils/calculation-plan';
 
 const createUniqueId = () => uuid.v1().replace(/-/gi, ''); // don't use hyphen in id.
 
@@ -142,6 +144,29 @@ const plans = (
           return v;
         })
       };
+    case PLANS_UP_TO_DATE:
+      {
+        const upToDatePlans = state.plans.map((v) => {
+          // if there is a history
+          if (!v.endingDate && state.history[v.id].length > 0) {
+            // retrieve newest one from the history.
+            const newestHistory = state.history[v.id][state.history[v.id].length - 1];
+
+            // If newest history is old one
+            if (isOverDate(v.type, new Date(newestHistory.regDate))) {
+              // reset progress
+              return { ...v, progress: 0 };
+            }
+          }
+
+          return v;
+        });
+
+        return {
+          ...state,
+          plans: upToDatePlans
+        };
+      }
     case RESET_PLANS:
       return {
         plans: [],

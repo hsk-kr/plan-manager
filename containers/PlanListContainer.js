@@ -6,7 +6,8 @@ import {
   progressPlan,
   resetPlans,
   completePlan,
-  endPlan
+  endPlan,
+  plansUpToDate,
 } from '../redux/ActionCreators';
 
 const mapStateToProps = (state) => ({
@@ -21,6 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
   resetPlans: () => dispatch(resetPlans()),
   completePlan: (id) => dispatch(completePlan(id)),
   endPlan: (id) => dispatch(endPlan(id)),
+  plansUpToDate: () => dispatch(plansUpToDate()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlanList);

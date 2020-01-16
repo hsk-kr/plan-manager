@@ -41,6 +41,7 @@ function PlanDetailComponent(props) {
   // when component's mounted, change isLoading is true
   useEffect(() => {
     load(false);
+    props.plansUpToDate(); // up to date plans
 
     // get paramaeter from navagation and get plan by planId.
     const planId = props.navigation.getParam('planId', null);
