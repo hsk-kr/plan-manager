@@ -14,7 +14,12 @@ import locale from '../localization/locale';
 import theme from '../theme';
 import Loading from './LoadingComponent';
 import InputNumber from './InputNumberComponent';
-import { getProgressRate } from '../utils/calculation-plan';
+import {
+  getProgressRate,
+  getUnitString,
+  getTypeString,
+  getProgressString
+} from '../utils/calculation-plan';
 import { toDefaultDateString } from '../utils/date';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
@@ -110,41 +115,24 @@ function PlanDetailComponent(props) {
         <View style={styles.horizontalView}>
           <Text style={styles.groupLabel}>{t('PLAN_TYPES')}: </Text>
           <Text style={styles.groupLabel}>
-            {
-              /* Render depends on the type */
-              plan.type === 'daily'
-                ? t('PLAN_TYPES_DAILY')
-                : plan.type === 'weekly'
-                  ? t('PLAN_TYPES_WEEKLY')
-                  : t('PLAN_TYPES_MONTHLY')
-            }
+            {getTypeString(t, plan.type)}
           </Text>
         </View>
         {
-          /* If a unit of the plan is 'once', It doesn't render */
+          /* If an unit of the plan is 'once', It doesn't render */
           plan.unit !== 'once'
             ?
             <>
               <View style={styles.horizontalView}>
                 <Text style={styles.groupLabel}>{t('CURRENT_PROGRESS_TEXT')}: </Text>
                 <Text style={styles.groupLabel}>
-                  {
-                    /* Render depends on the unit */
-                    plan.unit === 'count'
-                      ? `${plan.progress} ${t('COUNT_SUFFIX')} / ${getProgressRate(plan.progress, plan.goal)}%`
-                      : `${Math.floor(plan.progress / 3600)}${t('HOURS_TEXT')} ${Math.floor(plan.progress % 3600 / 60)}${t('MINUTES_TEXT')} / ${getProgressRate(plan.progress, plan.goal)}%`
-                  }
+                  {`${getProgressString(t, plan.unit, plan.progress)} / ${getProgressRate(plan.progress, plan.goal)}%`}
                 </Text>
               </View>
               <View style={styles.horizontalView}>
                 <Text style={styles.groupLabel}>{t('GOAL_TEXT')}: </Text>
                 <Text style={styles.groupLabel}>
-                  {
-                    /* Render depends on the unit */
-                    plan.unit === 'count'
-                      ? `${plan.goal} ${t('COUNT_SUFFIX')}`
-                      : `${Math.floor(plan.goal / 3600)}${t('HOURS_TEXT')} ${Math.floor(plan.goal % 3600 / 60)}${t('MINUTES_TEXT')}`
-                  }
+                  {getProgressString(t, plan.unit, plan.goal)}
                 </Text>
               </View>
             </>

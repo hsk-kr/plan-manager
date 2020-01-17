@@ -8,6 +8,7 @@ import {
   COMPLETE_PLAN,
   RESET_PLANS,
   PLANS_UP_TO_DATE,
+  DELETE_HISTORY,
 } from './ActionTypes';
 
 // settings
@@ -53,6 +54,11 @@ export const resetPlans = () => ({
 
 export const plansUpToDate = () => ({
   type: PLANS_UP_TO_DATE
+});
+
+export const deleteHistory = (planId, historyId) => ({
+  type: DELETE_HISTORY,
+  payload: { planId, historyId }
 });
 
 /**

@@ -16,6 +16,10 @@ const blackTheme = {
   progressingBackground: '#8ccc68',
   notDoneBackground: '#f84757',
   headerBackground: '#ff8fff',
+  historyLeftSideFont: '#ffffff',
+  historyLeftSideBackground: '#1e90ff',
+  historyRightSideFont: '#ffffff',
+  historyRightSideBackground: '#5352ed',
 };
 
 export default blackTheme;

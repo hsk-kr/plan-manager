@@ -27,6 +27,7 @@ const english = {
   CANCEL: 'Cancel',
   HOURS_TEXT: 'Hours',
   MINUTES_TEXT: 'Minutes',
+  TOTAL_PROGRESS: 'Total Progress',
   CURRENT_PROGRESS_TEXT: 'Current Progress',
   GOAL_TEXT: 'Goal',
   APPLY_PROGRESS_TEXT: 'Apply Progress',
@@ -55,6 +56,20 @@ const english = {
   ALERT_COMPLETE_PLAN_OK: 'It has been completed.',
   ALERT_END_PLAN_QUESTION: 'If you click OK button, this plan will be closed. after closing, you can\'t restore it.',
   ALERT_END_PLAN_OK: 'This plan has been closed.',
+  CURRENT_PLANS: 'Current Plans',
+  ENDED_PLANS: 'Ended Plans',
+  ACTIVITIES: 'Acvities',
+  PLAN_NOT_DONE: 'Plan Not done',
+  PLAN_DONE: 'Plan Acheieve',
+  PLAN_PROGRESSING: 'Plan Not Complete',
+  PLAN_OVER_DONE: 'Plan Over Acheieve',
+  DATE: 'date',
+  DELETE_PLAN: 'Delete Plan',
+  ALERT_DELETE_PLAN_TITLE: 'Delete Plan',
+  ALERT_DELETE_PLAN_QUESTION: 'Are you sure to delete the plan? after deleting, you can\'t restore it.',
+  ALERT_DELETE_HISTORY_TITLE: 'Delete History',
+  ALERT_DELETE_HISTORY_QUESTION: 'Are you sure to delete the history?',
+  VIEW_MORE: 'View More',
 };
 
 export default english;

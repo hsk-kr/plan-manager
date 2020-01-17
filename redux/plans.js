@@ -6,6 +6,7 @@ import {
   COMPLETE_PLAN,
   RESET_PLANS,
   PLANS_UP_TO_DATE,
+  DELETE_HISTORY,
 } from './ActionTypes';
 import uuid from 'react-native-uuid';
 import { isOverDate } from '../utils/calculation-plan';
@@ -62,7 +63,7 @@ const plans = (
       };
     case DELETE_PLAN:
       {
-        delete state.history[plan.id]; // delete history by plan.id
+        delete state.history[action.payload]; // delete history by action.payload(will be deleted planId)
 
         return {
           ...state,
@@ -172,6 +173,14 @@ const plans = (
         plans: [],
         history: {},
       };
+    case DELETE_HISTORY:
+      return {
+        ...state,
+        history: {
+          ...state.history,
+          [action.payload.planId]: state.history[action.payload.planId].filter((v) => v.id !== action.payload.historyId)
+        }
+      }
     default:
       return state;
   }

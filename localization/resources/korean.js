@@ -27,6 +27,7 @@ const korean = {
   CANCEL: '취소',
   HOURS_TEXT: '시간',
   MINUTES_TEXT: '분',
+  TOTAL_PROGRESS: '전체 진행량',
   CURRENT_PROGRESS_TEXT: '현재 진행률',
   GOAL_TEXT: '목표',
   APPLY_PROGRESS_TEXT: '진행 적용',
@@ -55,6 +56,20 @@ const korean = {
   ALERT_COMPLETE_PLAN_OK: '목표가 달성되었습니다.',
   ALERT_END_PLAN_QUESTION: '확인 버튼을 누르면 목표를 종료합니다. 다시 복구할 수 없으니 신중히 선택바랍니다.',
   ALERT_END_PLAN_OK: '목표를 종료하였습니다.',
+  CURRENT_PLANS: '현재 목표들',
+  ENDED_PLANS: '종료된 목표들',
+  ACTIVITIES: '활동들',
+  PLAN_NOT_DONE: '목표 미수행',
+  PLAN_DONE: '목표 완료',
+  PLAN_PROGRESSING: '목표 중도포기',
+  PLAN_OVER_DONE: '목표치 오버',
+  DATE: '날짜',
+  DELETE_PLAN: '목표 삭제',
+  ALERT_DELETE_PLAN_TITLE: '목표 삭제',
+  ALERT_DELETE_PLAN_QUESTION: '이 목표를 정말 삭제하시겠습니까? 삭제 후에는 복구가 불가능합니다.',
+  ALERT_DELETE_HISTORY_TITLE: '기록 삭제',
+  ALERT_DELETE_HISTORY_QUESTION: '정말로 이 기록을 삭제하시겠습니까?',
+  VIEW_MORE: '더보기',
 };
 
 export default korean;

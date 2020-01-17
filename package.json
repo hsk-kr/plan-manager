@@ -20,6 +20,7 @@
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.5.3",
     "react-native-picker-box": "^1.0.5",
+    "react-native-pie-chart": "^1.0.13",
     "react-native-reanimated": "~1.4.0",
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",

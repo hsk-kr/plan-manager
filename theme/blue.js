@@ -15,6 +15,10 @@ const blueTheme = {
   progressingBackground: '#eccc68',
   notDoneBackground: '#ff4757',
   headerBackground: '#ffffff',
+  historyLeftSideFont: '#ffffff',
+  historyLeftSideBackground: '#1e90ff',
+  historyRightSideFont: '#ffffff',
+  historyRightSideBackground: '#5352ed',
 };
 
 export default blueTheme;
