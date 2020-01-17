@@ -11,3 +11,4 @@ export const ADD_PROGRESS_PLAN = 'ADD_PROGRESS_PLAN';
 export const RESET_PLANS = 'RESET_PLANS';
 export const PLANS_UP_TO_DATE = 'PLANS_UP_TO_DATE';
 export const DELETE_HISTORY = 'DELETE_HISTORY';
+export const RESTORE_PLANS = 'RESTORE_PLANS';

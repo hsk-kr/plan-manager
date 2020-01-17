@@ -16,7 +16,6 @@ import Loading from './LoadingComponent';
 import InputNumber from './InputNumberComponent';
 import {
   getProgressRate,
-  getUnitString,
   getTypeString,
   getProgressString
 } from '../utils/calculation-plan';
@@ -92,6 +91,7 @@ function PlanDetailComponent(props) {
     } else if (plan.unit === 'time') {
       if (!isNaN(progressTime.hours) && !isNaN(progressTime.minutes)) {
         progress = (Number(progressTime.hours) * 3600) + (Number(progressTime.minutes) * 60);
+
       }
     } else {
       progress = plan.progress === 0 ? 1 : 0;

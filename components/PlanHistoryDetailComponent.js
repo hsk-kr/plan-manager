@@ -4,8 +4,9 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  Alert
+  Alert,
 } from 'react-native';
+import { Divider, Button, Icon } from 'react-native-elements';
 import locale from '../localization/locale';
 import theme from '../theme';
 import Loading from './LoadingComponent';
@@ -13,11 +14,9 @@ import PieChart from 'react-native-pie-chart';
 import {
   getTypeString,
   getUnitString,
-  getProgressString,
-  getColorOfPlan
+  getProgressString
 } from '../utils/calculation-plan';
 import { toDefaultDateString } from '../utils/date';
-import { Divider, Button, Icon } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
@@ -179,11 +178,14 @@ const createHistoryList = (plan, planHistory) => {
 };
 
 function PlanHistoryList(props) {
+  // states
   const [isLoading, load] = useState(true);
   const [plan, setPlan] = useState(null);
   const [cntObj, setCntObj] = useState(null);
   const [historyList, setHistoryList] = useState([]);
   const [pageCount, setPageCount] = useState(0);
+
+  // variables 
   const pageStep = 5; // how many load at a once time.
   const planId = props.navigation.getParam('planId', 0);
 
@@ -375,7 +377,6 @@ function PlanHistoryList(props) {
                   setPageCount(pageCount + pageStep);
                 }
               }>
-
               <Icon
                 name='chevron-circle-down'
                 type='font-awesome'
@@ -383,8 +384,6 @@ function PlanHistoryList(props) {
                 size={16}
                 reverse
                 raised />
-
-
             </TouchableOpacity>
           </View>
         </View>

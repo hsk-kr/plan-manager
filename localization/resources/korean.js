@@ -70,6 +70,20 @@ const korean = {
   ALERT_DELETE_HISTORY_TITLE: '기록 삭제',
   ALERT_DELETE_HISTORY_QUESTION: '정말로 이 기록을 삭제하시겠습니까?',
   VIEW_MORE: '더보기',
+  BACKUP: '백업',
+  RESTORE: '복구',
+  EXPORT_DATA: '데이터 내보내기',
+  RESTORE_DATA: '데이터 복구하기',
+  DATA: '데이터',
+  DOES_NOT_SUPPORT: '이 기능은 당신의 기기에서 지원하지 않는 기능입니다.',
+  BACKUP_TITLE: '데이터 백업 - 아란 목표 관리자',
+  BACKUP_EXPLANATION: '백업 버튼을 누른 후 생성된 데이터를 보관해주세요.',
+  RESTORE_EXPLANATION: '당신의 백업 데이터를 입력 상자에 붙여넣은 후 복구 버튼을 눌러주세요.',
+  ALERT_RESTORE_TITLE: '데이터 복구',
+  ALERT_RESTORE_QUESTION: '데이터를 복구 하시겠습니까? 현재 진행중인 목표들은 전부 삭제됩니다.',
+  ALERT_RESTORE_FAIL: '데이터를 복구하지 못했습니다. 데이터를 다시 한번 확인해주세요.',
+  ALERT_RESTORE_SUCCESS: '데이터를 복구하였습니다.',
+  ALERT_CHECK_INPUT_VALUE: '입력 값을 다시 확인해주세요.',
 };
 
 export default korean;

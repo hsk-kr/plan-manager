@@ -7,6 +7,7 @@ import {
   RESET_PLANS,
   PLANS_UP_TO_DATE,
   DELETE_HISTORY,
+  RESTORE_PLANS,
 } from './ActionTypes';
 import uuid from 'react-native-uuid';
 import { isOverDate } from '../utils/calculation-plan';
@@ -180,7 +181,13 @@ const plans = (
           ...state.history,
           [action.payload.planId]: state.history[action.payload.planId].filter((v) => v.id !== action.payload.historyId)
         }
-      }
+      };
+    case RESTORE_PLANS:
+      return {
+        ...state,
+        plans: [...action.payload.plans],
+        history: { ...action.payload.history }
+      };
     default:
       return state;
   }

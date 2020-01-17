@@ -70,6 +70,20 @@ const english = {
   ALERT_DELETE_HISTORY_TITLE: 'Delete History',
   ALERT_DELETE_HISTORY_QUESTION: 'Are you sure to delete the history?',
   VIEW_MORE: 'View More',
+  BACKUP: 'Backup',
+  RESTORE: 'Restore',
+  EXPORT_DATA: 'Export Data',
+  RESTORE_DATA: 'Restore Data',
+  DATA: 'data',
+  DOES_NOT_SUPPORT: 'This feature doesn\'t support on your device.',
+  BACKUP_TITLE: 'Backup - Aran: Plan Manager',
+  BACKUP_EXPLANATION: 'Press the button, we gives you the restore data. you have to keep the data for restoring later.',
+  RESTORE_EXPLANATION: 'Put your data into the input box and then press the restore button.',
+  ALERT_RESTORE_TITLE: 'Data Store',
+  ALERT_RESTORE_QUESTION: 'Are you sure to restore the data? all of your current plans will be deleted after.',
+  ALERT_RESTORE_FAIL: 'Failed to restore the data. Sorry. please, check your data again.',
+  ALERT_RESTORE_SUCCESS: 'It\'s been succeed to restore the data.',
+  ALERT_CHECK_INPUT_VALUE: 'Please, ensure your input values.',
 };
 
 export default english;
