@@ -101,6 +101,10 @@ function PlanDetailComponent(props) {
     props.navigation.goBack();
   };
 
+  const viewPlanHistoryHandler = () => {
+    props.navigation.navigate('PlanHistoryDetail', { planId: plan.id });
+  };
+
   return (
     <ScrollView style={{ backgroundColor: '#fff' }}>
       <View style={styles.container}>
@@ -186,6 +190,7 @@ function PlanDetailComponent(props) {
           <Button
             title={t('VIEW_PLAN_HISTORY_TEXT')}
             buttonStyle={styles.historyButton}
+            onPress={viewPlanHistoryHandler}
           />
           <Button
             title={t('END_PLAN_TEXT')}
