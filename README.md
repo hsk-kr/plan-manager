@@ -4,3 +4,10 @@ Plan Manager App has been designed as a wonderful management mobile app for your
 The app has been written ReactNative with Expo.
 
 ## Preview
+
+![How to ad plans](https://github.com/hsk-kr/plan-manager/blob/master/screenshots/addplan.gif?raw=true)
+
+![How to view the history of plans](https://github.com/hsk-kr/plan-manager/blob/master/screenshots/history.gif?raw=true)
+
+![How to set theme and set languages](https://github.com/hsk-kr/plan-manager/blob/master/screenshots/settings.gif?raw=true)
+
