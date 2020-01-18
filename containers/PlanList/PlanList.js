@@ -239,7 +239,7 @@ function PlanList(props) {
 
   const content = (
     <>
-      <ScrollView>
+      <ScrollView style={{ backgroundColor: theme(themeName).background }}>
         <Animatable.View animation='bounceIn' duration={2000} delay={1000}>
           <View style={styles.container} >
             <View>
