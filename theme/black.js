@@ -1,4 +1,3 @@
-// TODO: This is a style for testing
 const blackTheme = {
   main: '#f5f6fa',
   background: '#2d3436',

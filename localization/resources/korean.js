@@ -1,5 +1,5 @@
 const korean = {
-  HEADER_TITLE: '아란: 목표 관리',
+  HEADER_TITLE: '아란: 일상 목표 관리자',
   SETTINGS: '설정',
   DAILY_PLAN: '일간 목표',
   WEEKLY_PLAN: '주간 목표',

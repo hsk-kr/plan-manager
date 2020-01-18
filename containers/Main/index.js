@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AppNavigator from '../../navigators/AppNavigator';
 import Loading from '../../components/Loading';
 
-function Main(props) {
+function Main() {
   const [isLoading, load] = useState(true);
 
   useEffect(() => {

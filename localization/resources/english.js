@@ -1,5 +1,5 @@
 const english = {
-  HEADER_TITLE: 'Aran: Plan Manager',
+  HEADER_TITLE: 'Aran: Daily Plan Manager',
   SETTINGS: 'Settings',
   DAILY_PLAN: 'Daily Plan',
   WEEKLY_PLAN: 'Weekly Plan',
