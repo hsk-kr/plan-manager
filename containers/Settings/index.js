@@ -1,10 +1,6 @@
 import { connect } from 'react-redux';
-import Settings from '../components/SettingsComponent';
-import {
-  changeLanguage,
-  changeTheme,
-  restorePlans,
-} from '../redux/ActionCreators';
+import Settings from './Settings';
+import { changeLanguage, changeTheme, restorePlans, } from '../../redux/ActionCreators';
 
 const mapStateToProps = (state) => ({
   settings: state.settings,

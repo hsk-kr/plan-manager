@@ -1,30 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  StyleSheet,
-  Alert
-} from 'react-native';
-import {
-  Button,
-  Divider
-} from 'react-native-elements';
-import locale from '../localization/locale';
-import theme from '../theme';
-import Loading from './LoadingComponent';
-import InputNumber from './InputNumberComponent';
-import {
-  getProgressRate,
-  getTypeString,
-  getProgressString
-} from '../utils/calculation-plan';
-import { toDefaultDateString } from '../utils/date';
+import { ScrollView, View, Text, Alert } from 'react-native';
+import { Button, Divider } from 'react-native-elements';
+import locale from '../../localization/locale';
+import theme from '../../theme';
+import Loading from '../../components/Loading';
+import InputNumber from '../../components/InputNumber';
+import { getProgressRate, getTypeString, getProgressString } from '../../helpers/calculation-plan';
+import { toDefaultDateString } from '../../helpers/date';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
+const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
-function PlanDetailComponent(props) {
+function PlanDetail(props) {
   const [isLoading, load] = useState(true);
   const [plan, setPlan] = useState(null);
   const [progressCount, setProgressCount] = useState(0);
@@ -203,58 +191,4 @@ function PlanDetailComponent(props) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    margin: 30
-  },
-  applyProgressButton: {
-    backgroundColor: '#05c46b',
-    marginTop: 20,
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 10,
-  },
-  historyButton: {
-    backgroundColor: '#575fcf',
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 10,
-  },
-  endPlanButton: {
-    backgroundColor: '#ff3f34',
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 10,
-  },
-  planTitle: {
-    color: theme(themeName).main,
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  centerView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  marginTopBottom: {
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  horizontalView: {
-    flex: 1,
-    flexDirection: 'row'
-  },
-  groupLabel: {
-    fontSize: 13,
-    color: theme(themeName).main
-  },
-  explanation: {
-    color: '#808e9b',
-    fontSize: 12,
-    margin: 10,
-  }
-});
-
-export default PlanDetailComponent;
+export default PlanDetail;

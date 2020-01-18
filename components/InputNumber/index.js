@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  View,
-  TextInput,
-  Text,
-  StyleSheet,
-  TouchableOpacity
-} from 'react-native';
+import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import styles from './styles';
 
 /**
  * A Input nubmer component
@@ -17,7 +12,7 @@ import {
  * @property {number} stepValue How much increase when press the up and down buttons. default 1.
  * @property {boolean} notAllowNegative Not allow to input negative number.
  */
-function InputNumberComponent(props) {
+function InputNumber(props) {
   let { stepValue } = props;
   if (!stepValue) {
     stepValue = 1;
@@ -64,33 +59,4 @@ function InputNumberComponent(props) {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    height: 50
-  },
-  buttonsContainer: {
-    width: 30
-  },
-  text: {
-    width: 70,
-    fontSize: 16,
-    borderColor: '#dfe4ea',
-    borderWidth: 1,
-    padding: 10,
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
-    textAlign: 'center'
-  },
-  button: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: '#dfe4ea',
-    borderWidth: 1,
-    borderTopRightRadius: 5,
-    borderBottomEndRadius: 5,
-  }
-});
-
-export default InputNumberComponent;
+export default InputNumber;

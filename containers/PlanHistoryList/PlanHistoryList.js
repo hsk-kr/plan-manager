@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Text
-} from 'react-native';
-import locale from '../localization/locale';
-import theme from '../theme';
-import Loading from './LoadingComponent';
-import { getTypeString } from '../utils/calculation-plan';
-import { toDefaultDateString } from '../utils/date';
+import { View, ScrollView, Text } from 'react-native';
+import locale from '../../localization/locale';
+import theme from '../../theme';
+import Loading from '../../components/Loading';
+import { getTypeString } from '../../helpers/calculation-plan';
+import { toDefaultDateString } from '../../helpers/date';
 import { Divider } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
-// A string variable for theme. If this is 'undefined', theme uses to default theme.
-let themeName = undefined;
 
 // Component Types
 export const ENDED_PLANS = 'ENDED_PLANS';
 export const CURRENT_PLANS = 'CURRENT_PLANS';
 
+// A string variable for theme. If this is 'undefined', theme uses to default theme.
+let themeName = undefined;
+const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
+
 function PlanHistoryList(props) {
   const [isLoading, load] = useState(true);
-  const [listType, setListType] = useState(props.navigation.getParam('listType', CURRENT_PLANS));
   const [plans, setPlans] = useState([]);
+
+  const listType = props.navigation.getParam('listType', CURRENT_PLANS);
 
   // translate function for language
   const t = locale(props.settings.language);
@@ -82,34 +79,6 @@ function PlanHistoryList(props) {
     </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme(themeName).background
-  },
-  listContainer: {
-    margin: 30
-  },
-  listItem: {
-    backgroundColor: theme(themeName).listItemBackground,
-    padding: 20,
-    marginBottom: 15,
-    borderRadius: 30
-  },
-  listItemTitle: {
-    color: theme(themeName).listItemFontColor,
-    fontSize: 18,
-  },
-  listItemBody: {
-    color: theme(themeName).listItemFontColor,
-    fontSize: 12
-  },
-  divider: {
-    backgroundColor: theme(themeName).listItemFontColor,
-    marginTop: 5,
-    marginBottom: 5
-  }
-});
 
 export default PlanHistoryList;
 

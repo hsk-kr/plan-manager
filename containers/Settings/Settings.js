@@ -1,30 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  View,
-  StyleSheet,
-  Alert,
-  Text,
-  Modal,
-  Share,
-  Platform
-} from 'react-native';
-import {
-  ListItem,
-  Button,
-  Input,
-  Icon,
-  Divider,
-} from 'react-native-elements';
+import { View, Alert, Text, Modal, Share, Platform } from 'react-native';
+import { ListItem, Button, Input, Icon, Divider, } from 'react-native-elements';
 import { Buffer } from 'buffer';
-import locale from '../localization/locale';
-import Loading from './LoadingComponent';
-import theme from '../theme';
+import locale from '../../localization/locale';
+import Loading from '../../components/Loading';
+import theme from '../../theme';
 import PickerBox from 'react-native-picker-box';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
+const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
-function SettingsComponent(props) {
+function Settings(props) {
   // states
   const [isLoading, load] = useState(true);
   const [isVisibleBackupRestoreModal, setVisibleBackupRestoreModal] = useState(false);
@@ -264,33 +251,4 @@ function SettingsComponent(props) {
   return content;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme(themeName).background,
-    flex: 1
-  },
-  backupRestoreModalContainer: {
-    backgroundColor: theme(themeName).background,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  backupRestoreText: {
-    color: theme(themeName).main,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  divider: {
-    backgroundColor: theme(themeName).main,
-    marginTop: 20,
-    marginBottom: 20,
-    width: 300
-  },
-  explanation: {
-    color: '#808e9b',
-    fontSize: 12,
-    margin: 10,
-  },
-});
-
-export default SettingsComponent;
+export default Settings;

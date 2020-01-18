@@ -1,26 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Text,
-  Alert,
-} from 'react-native';
+import { View, ScrollView, Text, Alert } from 'react-native';
 import { Divider, Button, Icon } from 'react-native-elements';
-import locale from '../localization/locale';
-import theme from '../theme';
-import Loading from './LoadingComponent';
+import locale from '../../localization/locale';
+import theme from '../../theme';
+import Loading from '../../components/Loading';
 import PieChart from 'react-native-pie-chart';
-import {
-  getTypeString,
-  getUnitString,
-  getProgressString
-} from '../utils/calculation-plan';
-import { toDefaultDateString } from '../utils/date';
+import { getTypeString, getUnitString, getProgressString } from '../../helpers/calculation-plan';
+import { toDefaultDateString } from '../../helpers/date';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
+const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
 /**
  * Create a history list with plans and history.
@@ -177,7 +168,7 @@ const createHistoryList = (plan, planHistory) => {
   });
 };
 
-function PlanHistoryList(props) {
+function PlanHistoryDetail(props) {
   // states
   const [isLoading, load] = useState(true);
   const [plan, setPlan] = useState(null);
@@ -392,57 +383,5 @@ function PlanHistoryList(props) {
   )
 }
 
-const styles = StyleSheet.create({
-  scrollContainer: {
-    backgroundColor: theme(themeName).background
-  },
-  viewMoreContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  container: {
-    margin: 30
-  },
-  chartContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30
-  },
-  planInfoText: {
-    color: theme(themeName).main,
-    fontSize: 13
-  },
-  divider: {
-    marginTop: 5,
-    marginBottom: 5
-  },
-  title: {
-    fontSize: 20,
-    color: theme(themeName).main,
-    marginBottom: 20
-  },
-  activity: {
-    fontSize: 16,
-    color: theme(themeName).main,
-    marginBottom: 5
-  },
-  activityDate: {
-    color: theme(themeName).main,
-    fontSize: 14,
-  },
-  activityText: {
-    color: theme(themeName).main,
-    fontSize: 13
-  },
-  activityContainer: {
-    marginBottom: 10
-  },
-  deletePlanButton: {
-    marginBottom: 10
-  }
-});
-
-export default PlanHistoryList;
+export default PlanHistoryDetail;
 

@@ -1,9 +1,6 @@
-import PlanHistoryDetail from '../components/PlanHistoryDetailComponent';
+import PlanHistoryDetail from './PlanHistoryDetail';
 import { connect } from 'react-redux';
-import {
-  deletePlan,
-  deleteHistory,
-} from '../redux/ActionCreators';
+import { deletePlan, deleteHistory } from '../../redux/ActionCreators';
 
 const mapStateToProps = (state) => ({
   settings: state.settings,

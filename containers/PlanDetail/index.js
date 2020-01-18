@@ -1,10 +1,6 @@
 import { connect } from 'react-redux';
-import PlanDetail from '../components/PlanDetailComponent';
-import {
-  endPlan,
-  addProgressPlan,
-  plansUpToDate
-} from '../redux/ActionCreators';
+import PlanDetail from './PlanDetail';
+import { endPlan, addProgressPlan, plansUpToDate } from '../../redux/ActionCreators';
 
 const mapStateToProps = (state) => ({
   settings: state.settings,

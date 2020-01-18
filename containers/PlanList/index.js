@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PlanList from '../components/PlanListComponent';
+import PlanList from './PlanList';
 import {
   addPlan,
   deletePlan,
@@ -8,7 +8,7 @@ import {
   completePlan,
   endPlan,
   plansUpToDate,
-} from '../redux/ActionCreators';
+} from '../../redux/ActionCreators';
 
 const mapStateToProps = (state) => ({
   plans: state.plans,

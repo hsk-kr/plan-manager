@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity
-} from 'react-native';
-import locale from '../localization/locale';
-import theme from '../theme';
-import Loading from './LoadingComponent';
-import { CURRENT_PLANS, ENDED_PLANS } from './PlanHistoryListComponent';
+import { View, Text, TouchableOpacity } from 'react-native';
+import locale from '../../localization/locale';
+import theme from '../../theme';
+import Loading from '../../components/Loading';
+import { CURRENT_PLANS, ENDED_PLANS } from '../PlanHistoryList';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
+const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
-function PlanHistoryComponent(props) {
+function PlanHistory(props) {
   const [isLoading, load] = useState(true);
 
   // translate function for language
@@ -65,30 +61,4 @@ function PlanHistoryComponent(props) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row'
-  },
-  centerized: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  leftSide: {
-    backgroundColor: theme(themeName).historyLeftSideBackground
-  },
-  leftSideTitle: {
-    color: theme(themeName).historyLeftSideFont,
-    fontSize: 24
-  },
-  rightSide: {
-    backgroundColor: theme(themeName).historyRightSideBackground
-  },
-  rightSideTitle: {
-    color: theme(themeName).historyRightSideFont,
-    fontSize: 24
-  },
-});
-
-export default PlanHistoryComponent;
+export default PlanHistory;

@@ -1,7 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import PlanHistory from '../containers/PlanHistoryContainer';
-import PlanHistoryList from '../containers/PlanHistoryListContainer';
-import PlanHistoryDetail from '../containers/PlanHistoryDetailContainer';
+import PlanHistory from '../containers/PlanHistory';
+import PlanHistoryList from '../containers/PlanHistoryList';
+import PlanHistoryDetail from '../containers/PlanHistoryDetail';
 
 const PlanHistoryNavigator = createStackNavigator(
   {

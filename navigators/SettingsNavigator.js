@@ -1,6 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import Settings from '../containers/SettingsContainer';
-import theme from '../theme';
+import Settings from '../containers/Settings';
 
 const SettingsNavigator = createStackNavigator(
   {

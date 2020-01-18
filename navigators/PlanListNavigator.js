@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import PlanList from '../containers/PlanListContainer';
-import PlanDetail from '../containers/PlanDetailContainer';
+import PlanList from '../containers/PlanList';
+import PlanDetail from '../containers/PlanDetail';
 
 const PlanListNavigator = createStackNavigator(
   {

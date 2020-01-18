@@ -1,31 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  TouchableHighlight,
-  Modal,
-  Alert
-} from 'react-native';
-import {
-  Divider,
-  Icon,
-  Button,
-  ButtonGroup,
-  Input
-} from 'react-native-elements';
-import { getProgressRate, getColorOfPlan } from '../utils/calculation-plan';
+import React, { useState, useEffect } from 'react';
+import { View, ScrollView, Text, TouchableHighlight, Modal, Alert } from 'react-native';
+import { Divider, Icon, Button, ButtonGroup, Input } from 'react-native-elements';
+import { getProgressRate, getColorOfPlan } from '../../helpers/calculation-plan';
 import { RectButton } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
-import locale from '../localization/locale';
-import theme from '../theme';
-import Loading from './LoadingComponent';
+import locale from '../../localization/locale';
+import theme from '../../theme';
+import Loading from '../../components/Loading';
 import * as Animatable from 'react-native-animatable';
-import InputNumber from './InputNumberComponent';
+import InputNumber from '../../components/InputNumber';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
+const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
 /**
  * A Component for a list item of the plan list.
@@ -424,108 +411,5 @@ function PlanListComponent(props) {
 
   return content;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: theme(themeName).background
-  },
-  groupHeader: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: theme(themeName).groupHeader,
-    marginBottom: 10,
-  },
-  divider: {
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor: theme(themeName).divider
-  },
-  listItemContainer: {
-    flex: 1,
-    borderRadius: 15,
-    marginTop: 5,
-    marginBottom: 5,
-    padding: 10,
-    flexDirection: 'row'
-  },
-  listItemLeft: {
-    flex: 4
-  },
-  listItemRight: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-end'
-  },
-  listItemTitle: {
-    color: theme(themeName).listItemFontColor,
-    fontSize: 14
-  },
-  listItemProgressText: {
-    color: theme(themeName).listItemProgressFontColor,
-    fontSize: 12
-  },
-  addButton: {
-    position: 'absolute',
-    right: 20,
-    bottom: 20,
-    zIndex: 999,
-    backgroundColor: 'rgba(255, 255, 255, 0)'
-  },
-  addPlanButton: {
-    marginTop: 15,
-    backgroundColor: theme(themeName).listItemBackground
-  },
-  addPlanButtonText: {
-    color: theme(themeName).listItemFontColor,
-  },
-  cancelButton: {
-    marginTop: 15,
-    backgroundColor: '#ff3f34',
-  },
-  addPlanContainer: {
-    margin: 30
-  },
-  explanation: {
-    color: '#808e9b',
-    fontSize: 12,
-    margin: 10,
-  },
-  groupTitle: {
-    color: theme(themeName).main,
-    fontSize: 16
-  },
-  groupButton: {
-    backgroundColor: theme(themeName).listItemFontColor
-  },
-  selectedGroupButton: {
-    backgroundColor: theme(themeName).listItemBackground
-  },
-  groupButtonText: {
-    color: theme(themeName).listItemBackground
-  },
-  dividerMargin: {
-    marginTop: 15,
-    marginBottom: 15,
-  },
-  timeLabel: {
-    marginRight: 10
-  },
-  actionButton: {
-    flex: 1,
-    justifyContent: 'center',
-    borderRadius: 15,
-    marginTop: 5,
-    marginBottom: 5,
-    padding: 10,
-  },
-  leftActionButton: {
-    backgroundColor: '#05c46b'
-  },
-  rightActionButton: {
-    backgroundColor: '#ff3f34'
-  }
-});
 
 export default PlanListComponent;

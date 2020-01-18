@@ -10,7 +10,7 @@ import {
   RESTORE_PLANS,
 } from './ActionTypes';
 import uuid from 'react-native-uuid';
-import { isOverDate } from '../utils/calculation-plan';
+import { isOverDate } from '../helpers/calculation-plan';
 
 const createUniqueId = () => uuid.v1().replace(/-/gi, ''); // don't use hyphen in id.
 
