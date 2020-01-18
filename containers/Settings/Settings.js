@@ -9,7 +9,7 @@ import PickerBox from 'react-native-picker-box';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
-const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
+let styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
 function Settings(props) {
   // states
@@ -29,13 +29,15 @@ function Settings(props) {
     load(false);
   }, []);
 
-  // change themeName when theme's changed
+  // update theme
   useEffect(() => {
     themeName = props.settings.theme;
+    styles = require('./styles').default(theme, themeName);
 
     props.navigation.setParams({
-      headerTitleColor: theme(themeName).main,
-      headerBackgroundColor: theme(themeName).background
+      headerTitleColor: theme(themeName).headerTitle,
+      headerBackgroundColor: theme(themeName).headerBackground,
+      shown: true
     });
   }, [props.settings.theme]);
 
@@ -151,6 +153,7 @@ function Settings(props) {
       <View style={styles.container}>
         <ListItem
           titleStyle={{ color: theme(themeName).main }}
+          containerStyle={{ backgroundColor: theme(themeName).background }}
           leftIcon={{ name: 'language', type: 'font-awesome', color: theme(themeName).main }}
           title={t('SETTINGS_LANGUAGE')}
           rightIcon={{ name: 'chevron-right', type: 'font-awesome', color: theme(themeName).main }}
@@ -165,6 +168,7 @@ function Settings(props) {
         />
         <ListItem
           titleStyle={{ color: theme(themeName).main }}
+          containerStyle={{ backgroundColor: theme(themeName).background }}
           leftIcon={{ name: 'palette', type: 'font-awesome5', color: theme(themeName).main }}
           title={t('SETTINGS_THEME')}
           rightIcon={{ name: 'chevron-right', type: 'font-awesome', color: theme(themeName).main }}
@@ -179,6 +183,7 @@ function Settings(props) {
         />
         <ListItem
           titleStyle={{ color: theme(themeName).main }}
+          containerStyle={{ backgroundColor: theme(themeName).background }}
           leftIcon={{ name: 'database', type: 'font-awesome', color: theme(themeName).main }}
           title={t('SETTINGS_BACKUP_RESTORE')}
           rightIcon={{ name: 'chevron-right', type: 'font-awesome', color: theme(themeName).main }}
@@ -187,6 +192,7 @@ function Settings(props) {
         />
         <ListItem
           titleStyle={{ color: theme(themeName).main }}
+          containerStyle={{ backgroundColor: theme(themeName).background }}
           leftIcon={{ name: 'code', type: 'font-awesome', color: theme(themeName).main }}
           title={t('SETTINGS_ABOUT')}
           rightIcon={{ name: 'chevron-right', type: 'font-awesome', color: theme(themeName).main }}

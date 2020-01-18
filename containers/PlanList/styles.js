@@ -60,7 +60,8 @@ export default (theme, themeName) => StyleSheet.create({
     backgroundColor: '#ff3f34',
   },
   addPlanContainer: {
-    margin: 30
+    padding: 30,
+    backgroundColor: theme(themeName).background
   },
   explanation: {
     color: '#808e9b',
@@ -85,7 +86,8 @@ export default (theme, themeName) => StyleSheet.create({
     marginBottom: 15,
   },
   timeLabel: {
-    marginRight: 10
+    marginRight: 10,
+    color: theme(themeName).main
   },
   actionButton: {
     flex: 1,
@@ -96,9 +98,9 @@ export default (theme, themeName) => StyleSheet.create({
     padding: 10,
   },
   leftActionButton: {
-    backgroundColor: '#05c46b'
+    backgroundColor: theme(themeName).doneBackground
   },
   rightActionButton: {
-    backgroundColor: '#ff3f34'
+    backgroundColor: theme(themeName).cancel
   }
 });

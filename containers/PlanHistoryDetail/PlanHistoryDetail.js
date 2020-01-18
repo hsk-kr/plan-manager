@@ -12,9 +12,7 @@ import createHistoryList from './createHistoryList';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
-const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
-
-
+let styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
 function PlanHistoryDetail(props) {
   // states
@@ -31,12 +29,14 @@ function PlanHistoryDetail(props) {
   // translate function for language
   const t = locale(props.settings.language);
 
-  // change themeName when theme's changed
+  // update theme
   useEffect(() => {
     themeName = props.settings.theme;
+    styles = require('./styles').default(theme, themeName);
 
     props.navigation.setParams({
-      headerBackgroundColor: theme(themeName).background
+      headerBackgroundColor: theme(themeName).headerBackground,
+      shown: true
     });
   }, [props.settings.theme]);
 
@@ -162,7 +162,7 @@ function PlanHistoryDetail(props) {
             onPress={() => deletePlanHandler(plan.id)} />
           <Text style={styles.planInfoText}>{`${t('PLAN_TYPES')}: ${getTypeString(t, plan.type)}`}</Text>
           <Text style={styles.planInfoText}>{`${t('PLAN_ACHIEVEMENT_TYPES')}: ${getUnitString(t, plan.unit)}`}</Text>
-          <Text style={styles.planInfoText}>{`${t('GOAL_TEXT')}: ${getProgressString(t, plan.unit, plan.goal)}`}</Text>
+          <Text style={styles.planInfoText}>{`${t('GOAL')}: ${getProgressString(t, plan.unit, plan.goal)}`}</Text>
           <Text style={styles.planInfoText}>{`${t('PLAN_START_DATE')}: ${toDefaultDateString(plan.startingDate, true)}`}</Text>
           {
             plan.endingDate
@@ -219,7 +219,7 @@ function PlanHistoryDetail(props) {
               <Icon
                 name='chevron-circle-down'
                 type='font-awesome'
-                color={theme(themeName).main}
+                color={theme(themeName).groupHeader}
                 size={16}
                 reverse
                 raised />

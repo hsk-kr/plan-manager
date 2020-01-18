@@ -10,7 +10,7 @@ import { toDefaultDateString } from '../../helpers/date';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
-const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
+let styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
 function PlanDetail(props) {
   const [isLoading, load] = useState(true);
@@ -21,12 +21,14 @@ function PlanDetail(props) {
   // translate function for language
   const t = locale(props.settings.language);
 
-  // change themeName when theme's changed
+  // update theme
   useEffect(() => {
     themeName = props.settings.theme;
+    styles = require('./styles').default(theme, themeName);
 
     props.navigation.setParams({
-      headerBackgroundColor: theme(themeName).background
+      headerBackgroundColor: theme(themeName).headerBackground,
+      shown: true
     });
   }, [props.settings.theme]);
 
@@ -94,7 +96,7 @@ function PlanDetail(props) {
   };
 
   return (
-    <ScrollView style={{ backgroundColor: '#fff' }}>
+    <ScrollView style={{ backgroundColor: theme(themeName).background }}>
       <View style={styles.container}>
         <View style={styles.centerView}>
           <Text style={styles.planTitle}>{plan.title}</Text>
@@ -154,15 +156,17 @@ function PlanDetail(props) {
                     <InputNumber
                       notAllowNegative
                       value={progressTime.hours.toString()}
+                      color={theme(themeName).main}
                       onChangeText={(v) => setProgressTime({ ...progressTime, hours: v })}
                     />
-                    <Text> {t('HOURS')} </Text>
+                    <Text style={{ color: theme(themeName).main }}> {t('HOURS')} </Text>
                     <InputNumber
                       notAllowNegative
                       value={progressTime.minutes.toString()}
+                      color={theme(themeName).main}
                       onChangeText={(v) => setProgressTime({ ...progressTime, minutes: v })}
                     />
-                    <Text> {t('MINUTES')} </Text>
+                    <Text style={{ color: theme(themeName).main }}> {t('MINUTES')} </Text>
                   </>
                 )
                 : null

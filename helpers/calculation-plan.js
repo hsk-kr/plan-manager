@@ -110,7 +110,7 @@ export const getProgressString = (t, unit, progress) => {
         const hours = Math.floor(progress / 3600);
         const minutes = Math.floor(progress % 3600 / 60);
 
-        return `${hours} ${t('HOURS_TEXT')} ${minutes}${t('MINUTES_TEXT')}`;
+        return `${hours} ${t('HOURS')} ${minutes} ${t('MINUTES')}`;
       }
     default:
       return 'clear';

@@ -8,6 +8,7 @@ import styles from './styles';
  * @property {object} buttonsContainerStyle A style of the container of buttons
  * @property {object} textStyle A style of the text
  * @property {number} value A value
+ * @perperty {string} color Text color
  * @property {Function} onChangeText Change text event
  * @property {number} stepValue How much increase when press the up and down buttons. default 1.
  * @property {boolean} notAllowNegative Not allow to input negative number.
@@ -21,7 +22,7 @@ function InputNumber(props) {
   return (
     <View style={[styles.container, props.containerStyle]}>
       <TextInput
-        style={[styles.text, props.textStyle]}
+        style={[styles.text, props.textStyle, { color: props.color || 'black' }]}
         value={props.value.toString()}
         onChangeText={
           (v) => {
@@ -38,7 +39,7 @@ function InputNumber(props) {
           style={styles.button}
           onPress={() => props.onChangeText(Number(props.value) + stepValue)}>
           <View >
-            <Text>↑</Text>
+            <Text style={{ color: props.color || 'black' }}>↑</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -51,7 +52,7 @@ function InputNumber(props) {
             }
           }>
           <View>
-            <Text>↓</Text>
+            <Text style={{ color: props.color || 'black' }}>↓</Text>
           </View>
         </TouchableOpacity>
       </View>

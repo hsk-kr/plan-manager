@@ -7,7 +7,7 @@ import { CURRENT_PLANS, ENDED_PLANS } from '../PlanHistoryList';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
-const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
+let styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
 function PlanHistory(props) {
   const [isLoading, load] = useState(true);
@@ -15,13 +15,15 @@ function PlanHistory(props) {
   // translate function for language
   const t = locale(props.settings.language);
 
-  // change themeName when theme's changed
+  // update theme
   useEffect(() => {
     themeName = props.settings.theme;
+    styles = require('./styles').default(theme, themeName);
 
     props.navigation.setParams({
-      headerTitleColor: theme(themeName).main,
-      headerBackgroundColor: theme(themeName).background
+      headerTitleColor: theme(themeName).headerTitle,
+      headerBackgroundColor: theme(themeName).headerBackground,
+      shown: true
     });
   }, [props.settings.theme]);
 

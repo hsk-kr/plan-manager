@@ -14,7 +14,7 @@ export const CURRENT_PLANS = 'CURRENT_PLANS';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
-const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
+let styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
 function PlanHistoryList(props) {
   const [isLoading, load] = useState(true);
@@ -25,12 +25,14 @@ function PlanHistoryList(props) {
   // translate function for language
   const t = locale(props.settings.language);
 
-  // change themeName when theme's changed
+  // update theme
   useEffect(() => {
     themeName = props.settings.theme;
+    styles = require('./styles').default(theme, themeName);
 
     props.navigation.setParams({
-      headerBackgroundColor: theme(themeName).background
+      headerBackgroundColor: theme(themeName).headerBackground,
+      shown: true
     });
   }, [props.settings.theme]);
 

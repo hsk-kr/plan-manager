@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import PlanListNavigator from './PlanListNavigator';
 import PlanHistoryNavigator from './PlanHistoryNavigator';
 import SettingsNavigator from './SettingsNavigator';
-import theme from '../theme';
 
 const AppContainer = createBottomTabNavigator(
   {
@@ -39,10 +38,10 @@ const AppContainer = createBottomTabNavigator(
     animationEnabled: true,
     tabBarOptions: {
       showLabel: false,
-      activeTintColor: theme.main,
-      inactiveTintColor: theme.inactive,
-      activeBackgroundColor: theme.activeBackground,
-      inactiveBackgroundColor: theme.tabBackground
+      activeTintColor: '#353b48',
+      inactiveTintColor: '#a4b0be',
+      activeBackgroundColor: '#d1d8e0',
+      inactiveBackgroundColor: '#ffffff'
     }
   }
 );

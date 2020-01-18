@@ -13,7 +13,8 @@ const PlanListNavigator = createStackNavigator(
         },
         headerTitleStyle: {
           color: navigation.getParam('headerTitleColor') || '#000000',
-        }
+        },
+        headerShown: navigation.getParam('shown') || false
       })
     },
     PlanDetail: {
@@ -22,7 +23,8 @@ const PlanListNavigator = createStackNavigator(
         title: '',
         headerStyle: {
           backgroundColor: navigation.getParam('headerBackgroundColor') || '#ffffff'
-        }
+        },
+        headerShown: navigation.getParam('shown') || false
       })
     }
   },

@@ -12,7 +12,7 @@ import InputNumber from '../../components/InputNumber';
 
 // A string variable for theme. If this is 'undefined', theme uses to default theme.
 let themeName = undefined;
-const styles = require('./styles').default(theme, themeName); // get styles depend on theme.
+let styles = require('./styles').default(theme, themeName); // get styles depend on theme.
 
 /**
  * A Component for a list item of the plan list.
@@ -61,7 +61,7 @@ function PlanListItem({ list, type, handleClickListItem, t, onCompletePlan, onEn
         renderRightActions={renderRightActions}>
         <TouchableHighlight
           onPress={() => handleClickListItem(item.id)}
-          underlayColor={theme(themeName).underlayColor} >
+          underlayColor={theme(themeName).background} >
           <View style={[styles.listItemContainer, backgroundColor]}>
             <View style={styles.listItemLeft}>
               <Text style={styles.listItemTitle}>{item.title}</Text>
@@ -79,7 +79,7 @@ function PlanListItem({ list, type, handleClickListItem, t, onCompletePlan, onEn
   });
 }
 
-function PlanListComponent(props) {
+function PlanList(props) {
   // states
   const [isLoading, load] = useState(true);
   const [planTypeIndex, setPlanTypeIndex] = useState(0);
@@ -114,13 +114,15 @@ function PlanListComponent(props) {
     };
   }, []);
 
-  // change themeName when theme's changed
+  // update theme
   useEffect(() => {
     themeName = props.settings.theme;
+    styles = require('./styles').default(theme, themeName);
 
     props.navigation.setParams({
-      headerTitleColor: theme(themeName).main,
-      headerBackgroundColor: theme(themeName).background
+      headerTitleColor: theme(themeName).headerTitle,
+      headerBackgroundColor: theme(themeName).headerBackground,
+      shown: true
     });
   }, [props.settings.theme]);
 
@@ -282,8 +284,7 @@ function PlanListComponent(props) {
         animationType='slide'
         transparent={false}
         visible={isModalVisible}
-        onRequestClose={toggleModal}
-      >
+        onRequestClose={toggleModal}>
         <ScrollView style={styles.addPlanContainer}>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text style={[styles.groupTitle, { fontWeight: 'bold', fontSize: 18 }]}>{t('ADD_PLAN_MODAL_TITLE')}</Text>
@@ -350,14 +351,16 @@ function PlanListComponent(props) {
                       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                         <InputNumber
                           notAllowNegative
+                          color={theme(themeName).main}
                           onChangeText={(v) => setTimeForPlan({ ...timeForPlan, hours: v })}
                           value={timeForPlan.hours.toString()} />
                         <Text style={styles.timeLabel}>{t('HOURS')}</Text>
                         <InputNumber
                           notAllowNegative
+                          color={theme(themeName).main}
                           onChangeText={(v) => setTimeForPlan({ ...timeForPlan, minutes: v })}
                           value={timeForPlan.minutes.toString()} />
-                        <Text>{t('MINUTES')}</Text>
+                        <Text style={{ color: theme(themeName).main }}>{t('MINUTES')}</Text>
                       </View>
                     </>
                   )
@@ -412,4 +415,4 @@ function PlanListComponent(props) {
   return content;
 }
 
-export default PlanListComponent;
+export default PlanList;

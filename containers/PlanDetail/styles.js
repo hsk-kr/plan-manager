@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default (theme, themeName) => StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: theme(themeName).background,
     margin: 30
   },
   applyProgressButton: {
@@ -48,7 +48,7 @@ export default (theme, themeName) => StyleSheet.create({
     color: theme(themeName).main
   },
   explanation: {
-    color: '#808e9b',
+    color: theme(themeName).explanation,
     fontSize: 12,
     margin: 10,
   }

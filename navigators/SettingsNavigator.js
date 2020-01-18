@@ -12,7 +12,8 @@ const SettingsNavigator = createStackNavigator(
         },
         headerTitleStyle: {
           color: navigation.getParam('headerTitleColor') || '#000000',
-        }
+        },
+        headerShown: navigation.getParam('shown') || false
       })
     }
   },
