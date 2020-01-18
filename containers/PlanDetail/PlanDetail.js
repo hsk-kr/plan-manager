@@ -143,10 +143,11 @@ function PlanDetail(props) {
                 <>
                   <InputNumber
                     notAllowNegative
+                    color={theme(themeName).main}
                     value={progressCount.toString()}
                     onChangeText={setProgressCount}
                   />
-                  <Text>{t('COUNT_SUFFIX')}</Text>
+                  <Text style={{ color: theme(themeName).main }}> {t('COUNT_SUFFIX')}</Text>
                 </>
               )
               : plan.unit === 'time'

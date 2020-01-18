@@ -292,6 +292,7 @@ function PlanList(props) {
           <View>
             <Input
               value={planTitle}
+              inputStyle={{ color: theme(themeName).main }}
               onChangeText={(text) => setPlanTitle(text)}
               placeholder={t('PLAN_TITLE')}
             />
@@ -340,6 +341,7 @@ function PlanList(props) {
                 ? /* planAchievementIndex === 0 (COUNT) */(
                   <Input
                     textAlign='center'
+                    inputStyle={{ color: theme(themeName).main }}
                     value={countForPlan.toString()}
                     onChangeText={(text) => setCountForPlan(text)}
                     placeholder={t('PLAN_ACHIEVEMENT_TYPES_COUNT')}

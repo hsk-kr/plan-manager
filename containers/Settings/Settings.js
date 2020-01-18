@@ -219,6 +219,8 @@ function Settings(props) {
           <Text style={styles.explanation}>{t('RESTORE_EXPLANATION')}</Text>
           <Input
             value={restoreData}
+            leftIconContainerStyle={{ marginRight: 10 }}
+            inputStyle={{ color: theme(themeName).main }}
             onChangeText={(text) => setRestoreData(text)}
             leftIcon={
               <Icon
