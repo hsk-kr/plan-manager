@@ -5,7 +5,7 @@ import styles from './styles';
 function Loading() {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size='large' color={theme.main} />
+      <ActivityIndicator size='large' />
       <Text style={styles.loadingText}>Loading . . .</Text>
     </View>
   );

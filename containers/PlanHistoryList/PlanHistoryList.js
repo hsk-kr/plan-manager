@@ -65,11 +65,11 @@ function PlanHistoryList(props) {
                 {`${t('PLAN_TYPES')}: ${getTypeString(t, v.type)}`}
               </Text>
               <Text style={styles.listItemBody}>
-                {`${t('PLAN_START_DATE_TEXT')}: ${toDefaultDateString(v.startingDate)}`}
+                {`${t('PLAN_START_DATE')}: ${toDefaultDateString(v.startingDate)}`}
               </Text>
               {
                 v.endingDate
-                  ? <Text style={styles.listItemBody}>{`${t('PLAN_END_DATE_TEXT')}: ${toDefaultDateString(v.endingDate)}`}</Text>
+                  ? <Text style={styles.listItemBody}>{`${t('PLAN_END_DATE')}: ${toDefaultDateString(v.endingDate)}`}</Text>
                   : null
               }
             </View>

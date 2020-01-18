@@ -45,8 +45,8 @@ function Settings(props) {
     { label: t('BLACK_THEME'), value: 'black' },
   ];
   let languageList = [
-    { label: t('KOREAN_TEXT'), value: 'korean' },
-    { label: t('ENGLISH_TEXT'), value: 'english' },
+    { label: t('KOREAN'), value: 'korean' },
+    { label: t('ENGLISH'), value: 'english' },
   ];
   useEffect(() => {
     // change header title to appropriate title depends on language
@@ -61,8 +61,8 @@ function Settings(props) {
     ];
 
     languageList = [
-      { label: t('KOREAN_TEXT'), value: 'korean' },
-      { label: t('ENGLISH_TEXT'), value: 'english' },
+      { label: t('KOREAN'), value: 'korean' },
+      { label: t('ENGLISH'), value: 'english' },
     ];
 
   }, [props.settings.language]);

@@ -66,7 +66,7 @@ function PlanListItem({ list, type, handleClickListItem, t, onCompletePlan, onEn
             <View style={styles.listItemLeft}>
               <Text style={styles.listItemTitle}>{item.title}</Text>
               <View>
-                <Text style={styles.listItemProgressText}>{t('CURRENT_PROGRESS_TEXT')} {getProgressRate(item.progress, item.goal)}%</Text>
+                <Text style={styles.listItemProgressText}>{t('CURRENT_PROGRESS')} {getProgressRate(item.progress, item.goal)}%</Text>
               </View>
             </View>
             <View style={styles.listItemRight}>
@@ -352,12 +352,12 @@ function PlanListComponent(props) {
                           notAllowNegative
                           onChangeText={(v) => setTimeForPlan({ ...timeForPlan, hours: v })}
                           value={timeForPlan.hours.toString()} />
-                        <Text style={styles.timeLabel}>{t('HOURS_TEXT')}</Text>
+                        <Text style={styles.timeLabel}>{t('HOURS')}</Text>
                         <InputNumber
                           notAllowNegative
                           onChangeText={(v) => setTimeForPlan({ ...timeForPlan, minutes: v })}
                           value={timeForPlan.minutes.toString()} />
-                        <Text>{t('MINUTES_TEXT')}</Text>
+                        <Text>{t('MINUTES')}</Text>
                       </View>
                     </>
                   )

@@ -101,7 +101,7 @@ function PlanDetail(props) {
         </View>
         <Divider style={styles.marginTopBottom} />
         <View style={styles.horizontalView}>
-          <Text style={styles.groupLabel}>{t('PLAN_START_DATE_TEXT')}: </Text>
+          <Text style={styles.groupLabel}>{t('PLAN_START_DATE')}: </Text>
           <Text style={styles.groupLabel}>{toDefaultDateString(plan.startingDate)}</Text>
         </View>
         <View style={styles.horizontalView}>
@@ -116,13 +116,13 @@ function PlanDetail(props) {
             ?
             <>
               <View style={styles.horizontalView}>
-                <Text style={styles.groupLabel}>{t('CURRENT_PROGRESS_TEXT')}: </Text>
+                <Text style={styles.groupLabel}>{t('CURRENT_PROGRESS')}: </Text>
                 <Text style={styles.groupLabel}>
                   {`${getProgressString(t, plan.unit, plan.progress)} / ${getProgressRate(plan.progress, plan.goal)}%`}
                 </Text>
               </View>
               <View style={styles.horizontalView}>
-                <Text style={styles.groupLabel}>{t('GOAL_TEXT')}: </Text>
+                <Text style={styles.groupLabel}>{t('GOAL')}: </Text>
                 <Text style={styles.groupLabel}>
                   {getProgressString(t, plan.unit, plan.goal)}
                 </Text>
@@ -156,13 +156,13 @@ function PlanDetail(props) {
                       value={progressTime.hours.toString()}
                       onChangeText={(v) => setProgressTime({ ...progressTime, hours: v })}
                     />
-                    <Text> {t('HOURS_TEXT')} </Text>
+                    <Text> {t('HOURS')} </Text>
                     <InputNumber
                       notAllowNegative
                       value={progressTime.minutes.toString()}
                       onChangeText={(v) => setProgressTime({ ...progressTime, minutes: v })}
                     />
-                    <Text> {t('MINUTES_TEXT')} </Text>
+                    <Text> {t('MINUTES')} </Text>
                   </>
                 )
                 : null
@@ -171,17 +171,17 @@ function PlanDetail(props) {
         <Divider style={styles.marginTopBottom} />
         <View>
           <Button
-            title={t('APPLY_PROGRESS_TEXT')}
+            title={t('APPLY_PROGRESS')}
             buttonStyle={styles.applyProgressButton}
             onPress={addProgressPlanHandler}
           />
           <Button
-            title={t('VIEW_PLAN_HISTORY_TEXT')}
+            title={t('VIEW_PLAN_HISTORY')}
             buttonStyle={styles.historyButton}
             onPress={viewPlanHistoryHandler}
           />
           <Button
-            title={t('END_PLAN_TEXT')}
+            title={t('END_PLAN')}
             buttonStyle={styles.endPlanButton}
             onPress={endPlanHandler}
           />
